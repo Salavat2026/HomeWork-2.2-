@@ -1,24 +1,26 @@
 package org.skypro.skyshop;
 
-public class Product {
+public abstract class Product {
     private final String name;// Название продукта
-    private final int cost;// стоимость продукта
 
-    public Product(String name, int cost) {
+    public Product(String name) {
         if (name == null|| name.isBlank()) {
             throw new IllegalArgumentException("Название продукта пусто!!!");
         }
-        if (cost < 0) {
+        if ( getPrice()< 0) {
             throw new IllegalArgumentException("Стоимость отрицательный!!!");
         }
         this.name = name;
-        this.cost = cost;
     }
 
     public String getName() {
         return name;
     }
-    public int getCost() {
-        return cost;
+    //Абстрактный метод - реализация будет в наследниках
+    public abstract double getPrice();
+
+    //Новый метод для определения, является ли товар специальным
+    public boolean isSpecial() {
+        return false;
     }
 }
